@@ -173,7 +173,7 @@
 
 
 <h1>All Emp:</h1>
-<jsp:useBean class="com.flower.dao.MyDAO" id="myDAO" scope="application"/>
+<jsp:useBean class="com.flower.dao.DAO" id="myDAO" scope="application"/>
 <table border="1">
     <%
         for (Emp e : myDAO.getAllEmp()) {

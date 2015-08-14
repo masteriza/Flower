@@ -12,10 +12,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyDAO {
+public class DAO {
     private DataSource dataSource;
 
-    public MyDAO() throws ServletException {
+    public DAO() throws ServletException {
         if (dataSource != null) {
             return;
         }
@@ -44,7 +44,7 @@ public class MyDAO {
             conn.close();
         } catch (SQLException ex) {
             throw new ServletException(
-                    "Cannot release connection2", ex);
+                    "Cannot release connection", ex);
         }
     }
 
@@ -61,12 +61,17 @@ public class MyDAO {
             }
         } catch (SQLException ex) {
 
-            throw new ServletException("Cannot obtain connection3", ex);
+            throw new ServletException("Cannot obtain connection", ex);
         } finally {
             if (conn != null) {
                 releaseConnection(conn);
             }
         }
         return allEmp;
+    }
+
+
+    public (){
+
     }
 }

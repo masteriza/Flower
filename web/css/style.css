@@ -9,108 +9,138 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+footer, header, menu, nav, section {
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
+
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
+
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 /* End of Eric Meyer's CSS Reset */
 
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
-	display: block;
-}
-body {
-	font: 12px/18px Arial, sans-serif;
-	width: 100%;
-}
-.wrapper {
-	width: 1000px;
-	margin: 0 auto;
+article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
+    display: block;
 }
 
+body {
+    font: 12px/18px Arial, sans-serif;
+    width: 100%;
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
 
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
-	height: 150px;
-	background: #FFE680;
+    height: 50px;
+    background: #FFE680;
 }
-
 
 /* Middle
 -----------------------------------------------------------------------------*/
 .middle {
-	width: 100%;
-	position: relative;
-}
-.middle:after {
-	display: table;
-	clear: both;
-	content: '';
-}
-.container {
-	width: 100%;
-	float: left;
-	overflow: hidden;
-}
-.content {
-	padding: 0 270px 0 270px;
+    width: 100%;
+    position: relative;
 }
 
+.middle:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.container {
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+
+.content {
+    padding: 0 270px 0 1px;
+}
+
+#map_canvas {
+    width: 760px;
+    height: 768px;
+    margin: auto;
+}
+
+.ui-autocomplete {
+    background-color: white;
+    width: 300px;
+    border: 1px solid #cfcfcf;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#panel {
+    width: 760px;
+    margin: auto;
+}
+
+#address {
+    width: 560px;
+}
 
 /* Left Sidebar
 -----------------------------------------------------------------------------*/
 .left-sidebar {
-	float: left;
-	width: 250px;
-	margin-left: -100%;
-	position: relative;
-	background: #B5E3FF;
+    float: left;
+    width: 1px;
+    margin-left: -100%;
+    position: relative;
+    background: #B5E3FF;
 }
-
 
 /* Right Sidebar
 -----------------------------------------------------------------------------*/
 .right-sidebar {
-	float: left;
-	width: 250px;
-	margin-left: -250px;
-	position: relative;
-	background: #FFACAA;
+    float: left;
+    width: 240px;
+    margin-left: -240px;
+    position: relative;
+    background: #FFACAA;
 }
-
 
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	height: 100px;
-	background: #BFF08E;
+    height: 20px;
+    background: #BFF08E;
 }

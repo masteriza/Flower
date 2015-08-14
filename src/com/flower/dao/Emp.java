@@ -13,7 +13,7 @@ public class Emp {
     }
 
 
-    public int getEmpno() {
+;    public int getEmpno() {
         return empno;
     }
 
