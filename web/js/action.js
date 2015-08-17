@@ -1,8 +1,8 @@
-
 /**
  * Created by user on 14.08.2015.
  */
 function initialize() {   //Определение карты
+
     array_provider_location = new Array(
         {
             "providerlocationlat": "50.45095993",
@@ -64,6 +64,7 @@ function initialize() {   //Определение карты
 $(document).ready(function () {
 
     initialize();
+    initlocation();
 
 
     $(function () {
