@@ -53,6 +53,26 @@
     <!-- .middle-->
     <footer class="footer">
         <strong>Footer:</strong>
+
+        <table border="1">
+            <%
+                for (Provider e : DAO.getProvider()) {
+            %>
+            <tr>
+                <td><%=e.getProviderId()%>
+                </td>
+                <td><%=e.getProvider()%>
+                </td>
+                <td><%=e.getlongitude()%>
+                </td>
+                <td><%=e.getlatitude()%>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+
     </footer>
     <!-- .footer -->
 </div>

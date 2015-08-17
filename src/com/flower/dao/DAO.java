@@ -70,8 +70,43 @@ public class DAO {
         return allEmp;
     }
 
+    public List<Provider> getProvider() throws ServletException {
+        List<Provider> provider = new ArrayList<Provider>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultset = statement.executeQuery("SELECT p.ID, p.NAME, p.LONGITUDE, p.LATITUDE FROM PROVIDER p");
+            while (resultset.next()) {
+                provider.add(new Provider(resultset.getInt(1), resultset.getString(2), resultset.getDouble(3), resultset.getDouble(4)));
+            }
+        } catch (SQLException ex) {
+            throw new ServletException("Cannot obtain connection", ex);
+        } finally {
+            if (conn != null) {
+                releaseConnection(conn);
+            }
+        }
 
-    public (){
+        return provider;
+    }
 
+    public List<Service> getService() throws ServletException {
+        List<Service> service = new ArrayList<Service>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultset = statement.executeQuery("SELECT USER_ID, CREATED_BY FROM DBUSER");
+
+        } catch (SQLException ex) {
+            throw new ServletException("Cannot obtain connection", ex);
+        } finally {
+            if (conn != null) {
+                releaseConnection(conn);
+            }
+        }
+
+        return service;
     }
 }

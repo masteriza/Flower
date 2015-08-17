@@ -3,29 +3,25 @@ package com.flower.dao;
 /**
  * Created by user on 14.08.2015.
  */
-public class Provider {
-    int providerId;
+public class Service {
+    int id;
     String provider;
+    String service;
+    Double price;
     Double longitude;
     Double latitude;
 
-    public Provider(int anInt, String string) {
+    public Service() {
 
     }
 
-    public Provider(int providerId, String provider, Double longitude, Double latitude) {
-        this.providerId = providerId;
+    public Service(int id, String provider, String service, Double price, Double longitude, Double latitude) {
+        this.id = id;
         this.provider = provider;
+        this.service = service;
+        this.price = price;
         this.longitude = longitude;
         this.latitude = latitude;
-    }
-
-    public int getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(int providerId) {
-        this.providerId = providerId;
     }
 
     public String getProvider() {
@@ -34,6 +30,22 @@ public class Provider {
 
     public void setProvider(String provider) {
         this.provider = provider;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Double getlongitude() {

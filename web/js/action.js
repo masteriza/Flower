@@ -1,3 +1,4 @@
+
 /**
  * Created by user on 14.08.2015.
  */
@@ -30,6 +31,7 @@ function initialize() {   //Определение карты
         }
     );
 
+    //alert(<%=e.getProviderId()%>);
 
     var latlng = new google.maps.LatLng(50.4501, 30.5234);
     var options = {
