@@ -74,6 +74,8 @@
         </table>
 
     </footer>
+
+    <div id="somediv"></div>
     <!-- .footer -->
 </div>
 <!-- .wrapper -->

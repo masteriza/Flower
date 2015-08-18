@@ -3,7 +3,7 @@
  */
 function initialize() {   //Определение карты
 
-    $.get("getProviderLocation", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+    $.get("GetProviderLocation", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
         $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
     });
     /*$.ajax({
