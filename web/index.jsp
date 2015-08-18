@@ -77,45 +77,6 @@
     <!-- .footer -->
 </div>
 <!-- .wrapper -->
-<script type="text/javascript">
-    function initlocation() {
-        /*alert();
-         var array_provider_location = new Array();
 
-         for (i=0;i<5;i++){
-         array_provider_location[i]
-         }*/
-
-
-        /*array_provider_location = new Array(
-         {
-         "providerlocationlat": "50.45095993",
-         providerlocationlng: "30.52259982",
-         "providertitle": "Main office"
-         },
-         {
-         "providerlocationlat": "50.4282552",
-         providerlocationlng: "30.4529175",
-         "providertitle": "Solomenka office"
-         },
-         {
-         "providerlocationlat": "50.4535873",
-         providerlocationlng: "30.601521",
-         "providertitle": "Darnitsa office"
-         },
-         {
-         "providerlocationlat": "50.397944",
-         providerlocationlng: "30.634579",
-         "providertitle": "Pozniaki office"
-         },
-         {
-         "providerlocationlat": "50.526944",
-         providerlocationlng: "30.492778",
-         "providertitle": "Obolon office"
-         }
-         )*/
-
-    }
-</script>
 </body>
 </html>
