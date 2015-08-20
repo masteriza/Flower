@@ -6,12 +6,12 @@
 
 
     <servlet>
-        <servlet-name>GetProviserLocationController</servlet-name>
+        <servlet-name>GetProviderLocation</servlet-name>
         <servlet-class>com.flower.controllers.GetProviderLocation</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetProviserLocationController</servlet-name>
-        <url-pattern>/services</url-pattern>
+        <servlet-name>GetProviderLocation</servlet-name>
+        <url-pattern>/GetProviderLocation</url-pattern>
     </servlet-mapping>
 
 </web-app>

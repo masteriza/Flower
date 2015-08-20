@@ -72,10 +72,10 @@
                 }
             %>
         </table>
-
+        <div id="somediv"></div>
     </footer>
 
-    <div id="somediv"></div>
+
     <!-- .footer -->
 </div>
 <!-- .wrapper -->

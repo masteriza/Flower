@@ -1,11 +1,14 @@
 package com.flower.controllers;
 
+import com.flower.dao.DAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by user on 18.08.2015.
@@ -14,6 +17,10 @@ public class GetProviderLocation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
+        DAO location = new DAO();
+        List qwe = location.getProvider();
+
 
         PrintWriter out = resp.getWriter();
         out.print("<h1>Hello Servlet</h1>");

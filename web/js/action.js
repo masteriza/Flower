@@ -74,7 +74,7 @@ function initialize() {   //Определение карты
 $(document).ready(function () {
 
     initialize();
-    initlocation();
+    /*initlocation();*/
 
 
     $(function () {
