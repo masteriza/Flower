@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="com.flower.dao.*" %>
+<%@ page import="com.flower.Service" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,16 +57,16 @@
 
         <table border="1">
             <%
-                for (Provider e : DAO.getProvider()) {
+               for (Service e : DAO.getService()) {
             %>
             <tr>
-                <td><%=e.getProviderId()%>
+                <td><%=e.getId()%>
                 </td>
-                <td><%=e.getProvider()%>
+                <td><%=e.getProviderName()%>
                 </td>
-                <td><%=e.getlongitude()%>
+                <td><%=e.getLongitude()%>
                 </td>
-                <td><%=e.getlatitude()%>
+                <td><%=e.getLatitude()%>
                 </td>
             </tr>
             <%

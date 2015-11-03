@@ -1,49 +1,6 @@
-/**
- * Created by user on 14.08.2015.
- */
-function initialize() {   //Определение карты
+//arrayProviderLocation = new Array();
 
-    $.get('GetProviderLocation', function(responseText) {
-      alert('132133');
-      // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-        $("#somediv").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-    });
-    /*$.ajax({
-        url: "some.php",
-        success: function(data){
-            alert( "Прибыли данные: " + data );
-        }
-    });*/
-
-    array_provider_location = new Array(
-        {
-            "providerlocationlat": "50.45095993",
-            providerlocationlng: "30.52259982",
-            "providertitle": "Main office"
-        },
-        {
-            "providerlocationlat": "50.4282552",
-            providerlocationlng: "30.4529175",
-            "providertitle": "Solomenka office"
-        },
-        {
-            "providerlocationlat": "50.4535873",
-            providerlocationlng: "30.601521",
-            "providertitle": "Darnitsa office"
-        },
-        {
-            "providerlocationlat": "50.397944",
-            providerlocationlng: "30.634579",
-            "providertitle": "Pozniaki office"
-        },
-        {
-            "providerlocationlat": "50.526944",
-            providerlocationlng: "30.492778",
-            "providertitle": "Obolon office"
-        }
-    );
-
-    //alert(<%=e.getProviderId()%>);
+function initialize() {   //РћРїСЂРµРґРµР»РµРЅРёРµ РєР°СЂС‚С‹
 
     var latlng = new google.maps.LatLng(50.4501, 30.5234);
     var options = {
@@ -53,31 +10,63 @@ function initialize() {   //Определение карты
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
-    geocoder = new google.maps.Geocoder();//Определение геокодера
-    usermarker = new google.maps.Marker({ //определение маркера
+    geocoder = new google.maps.Geocoder();//РћРїСЂРµРґРµР»РµРЅРёРµ РіРµРѕРєРѕРґРµСЂР°
+    usermarker = new google.maps.Marker({ //РѕРїСЂРµРґРµР»РµРЅРёРµ РјР°СЂРєРµСЂР°
         map: map,
         draggable: true
     });
-
-    var indexprovider;
-    for (indexprovider = 0; indexprovider < array_provider_location.length; indexprovider++) {
-        var providermarker = new google.maps.Marker({
-            map: map,
-
-            title: array_provider_location[indexprovider].providertitle
-        });
-        providermarker.setIcon('img/marker_blue.png');
-        var usermarkerLatLng = new google.maps.LatLng(array_provider_location[indexprovider].providerlocationlat, array_provider_location[indexprovider].providerlocationlng);
-        providermarker.setPosition(usermarkerLatLng);
-    }
 }
 
+function getMarkersData() {
+    $.ajax({
+        type: "POST",
+        url: "GetProviderLocation",
+        success: function (responseData) {
+            arrayProviderLocation = new Array(
+                {
+                    "id": "",
+                    "providerName": "",
+                    "latitude": "",
+                    "longitude": "",
+                    "price": "",
+                    "serviceName": "",
+                    "speed": ""
+
+                }
+            );
+            for (i = 0; i <= responseData.length - 1; i++) {
+                //arrayProviderLocation[i].latitude = responseData[i].latitude;
+                //arrayProviderLocation[i].longitude = responseData[i].longitude;
+                //arrayProviderLocation[i].providerName = responseData[i].providerName;
+                arrayProviderLocation[i] = {
+                    "id": responseData[i].id,
+                    "providerName": responseData[i].providerName,
+                    "latitude": responseData[i].latitude,
+                    "longitude": responseData[i].longitude,
+                    "price": responseData[i].price,
+                    "serviceName": responseData[i].serviceName,
+                    "speed": responseData[i].speed
+                };
+                //console.log(responseData[i].providerName);
+            }
+            var indexProvider;
+            for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
+                var providerMarker = new google.maps.Marker({
+                    map: map,
+                    title: arrayProviderLocation[indexProvider].providerName
+                });
+                providerMarker.setIcon('img/marker_blue.png');
+                var userMarkerLatLng = new google.maps.LatLng(arrayProviderLocation[indexProvider].latitude, arrayProviderLocation[indexProvider].longitude);
+                providerMarker.setPosition(userMarkerLatLng);
+            }
+        }
+    });
+}
 
 $(document).ready(function () {
 
     initialize();
-    /*initlocation();*/
-
+    getMarkersData();
 
     $(function () {
         google.maps.event.addListener(usermarker, 'drag', function () {
@@ -92,15 +81,15 @@ $(document).ready(function () {
                 }
             });
 
-            var userlocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
-            var mindistancebetweenprovideruser = 20000000;
-            for (indexprovider = 0; indexprovider < array_provider_location.length; indexprovider++) {
-                var providerlocation = new google.maps.LatLng(array_provider_location[indexprovider].providerlocationlat, array_provider_location[indexprovider].providerlocationlng);
-                var distancebetweenprovideruser = google.maps.geometry.spherical.computeDistanceBetween(userlocation, providerlocation);
-                //alert(array_provider_location[indexprovider].providertitle + "   " + distancebetweenprovideruser);
-                if (mindistancebetweenprovideruser >= distancebetweenprovideruser) {
-                    mindistancebetweenprovideruser = distancebetweenprovideruser;
-                    var indexprovidermindistancebetweenprovideruser = indexprovider;
+            console.log(arrayProviderLocation);
+            var userLocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
+            var minDistanceBetweenUserProvider = 20000000;
+            for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
+                var providerLocation = new google.maps.LatLng(arrayProviderLocation[indexProvider].latitude, arrayProviderLocation[indexProvider].longitude);
+                var distanceBetweenUserProvider = google.maps.geometry.spherical.computeDistanceBetween(userLocation, providerLocation);
+                if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
+                    minDistanceBetweenUserProvider = distanceBetweenUserProvider;
+                    var indexProviderMinDistanceBetweenUserProvider = indexProvider;
                 }
             }
 
@@ -115,10 +104,11 @@ $(document).ready(function () {
                     }
                 }
             });
+
         });
 
         $("#address").autocomplete({
-            //Определяем значение для адреса при геокодировании
+            //РћРїСЂРµРґРµР»СЏРµРј Р·РЅР°С‡РµРЅРёРµ РґР»СЏ Р°РґСЂРµСЃР° РїСЂРё РіРµРѕРєРѕРґРёСЂРѕРІР°РЅРёРё
             source: function (request, response) {
                 geocoder.geocode({'address': request.term}, function (results, status) {
                     response($.map(results, function (item) {
@@ -131,7 +121,7 @@ $(document).ready(function () {
                     }));
                 })
             },
-            //Выполняется при выборе конкретного адреса
+            //Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РїСЂРё РІС‹Р±РѕСЂРµ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ Р°РґСЂРµСЃР°
             select: function (event, ui) {
                 //$("#latitude").val(ui.item.latitude);
                 //$("#longitude").val(ui.item.longitude);
@@ -145,7 +135,7 @@ $(document).ready(function () {
         //End FuncReady
     });
 
-    //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
+    //Р”РѕР±Р°РІР»СЏРµРј СЃР»СѓС€Р°С‚РµР»СЏ СЃРѕР±С‹С‚РёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ РіРµРѕРєРѕРґРёСЂРѕРІР°РЅРёСЏ РґР»СЏ РјР°СЂРєРµСЂР° РїСЂРё РµРіРѕ РїРµСЂРµРјРµС‰РµРЅРёРё
 
 
 });
