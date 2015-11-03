@@ -1,5 +1,25 @@
-//arrayProviderLocation = new Array();
+function findNearestProvider() {
+    var userLocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
+    var minDistanceBetweenUserProvider = 20000000;
 
+    for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
+        var providerLocation = arrayProviderMarkers[indexProviderMarker].getPosition();
+        var distanceBetweenUserProvider = google.maps.geometry.spherical.computeDistanceBetween(userLocation, providerLocation);
+        if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
+            minDistanceBetweenUserProvider = distanceBetweenUserProvider;
+            indexMinDistanceBetweenUserProvider = indexProviderMarker;
+        }
+    }
+}
+function changeMarkerNearestProvider() {
+    for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
+        if (indexProviderMarker == indexMinDistanceBetweenUserProvider) {
+            arrayProviderMarkers[indexProviderMarker].setIcon('img/marker_green.png');
+        } else {
+            arrayProviderMarkers[indexProviderMarker].setIcon('img/marker_blue.png');
+        }
+    }
+}
 function initialize() {   //Определение карты
 
     var latlng = new google.maps.LatLng(50.4501, 30.5234);
@@ -10,6 +30,7 @@ function initialize() {   //Определение карты
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
+    arrayProviderMarkers = [];
     geocoder = new google.maps.Geocoder();//Определение геокодера
     usermarker = new google.maps.Marker({ //определение маркера
         map: map,
@@ -31,13 +52,9 @@ function getMarkersData() {
                     "price": "",
                     "serviceName": "",
                     "speed": ""
-
                 }
             );
             for (i = 0; i <= responseData.length - 1; i++) {
-                //arrayProviderLocation[i].latitude = responseData[i].latitude;
-                //arrayProviderLocation[i].longitude = responseData[i].longitude;
-                //arrayProviderLocation[i].providerName = responseData[i].providerName;
                 arrayProviderLocation[i] = {
                     "id": responseData[i].id,
                     "providerName": responseData[i].providerName,
@@ -51,13 +68,14 @@ function getMarkersData() {
             }
             var indexProvider;
             for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
-                var providerMarker = new google.maps.Marker({
-                    map: map,
-                    title: arrayProviderLocation[indexProvider].providerName
-                });
-                providerMarker.setIcon('img/marker_blue.png');
                 var userMarkerLatLng = new google.maps.LatLng(arrayProviderLocation[indexProvider].latitude, arrayProviderLocation[indexProvider].longitude);
-                providerMarker.setPosition(userMarkerLatLng);
+                providerMarker = new google.maps.Marker({
+                    map: map,
+                    title: arrayProviderLocation[indexProvider].providerName,
+                    icon: 'img/marker_blue.png',
+                    position: userMarkerLatLng
+                });
+                arrayProviderMarkers.push(providerMarker);
             }
         }
     });
@@ -69,30 +87,16 @@ $(document).ready(function () {
     getMarkersData();
 
     $(function () {
-        google.maps.event.addListener(usermarker, 'drag', function () {
+        google.maps.event.addListener(usermarker, 'dragend', function () {
             geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[0]) {
-                        /*$('#address').val(results[0].formatted_address);
-                         $('#latitude').val(marker.getPosition().lat());
-                         $('#longitude').val(marker.getPosition().lng());*/
                         $('#address').val(results[0].formatted_address);
                     }
                 }
             });
-
-            console.log(arrayProviderLocation);
-            var userLocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
-            var minDistanceBetweenUserProvider = 20000000;
-            for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
-                var providerLocation = new google.maps.LatLng(arrayProviderLocation[indexProvider].latitude, arrayProviderLocation[indexProvider].longitude);
-                var distanceBetweenUserProvider = google.maps.geometry.spherical.computeDistanceBetween(userLocation, providerLocation);
-                if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
-                    minDistanceBetweenUserProvider = distanceBetweenUserProvider;
-                    var indexProviderMinDistanceBetweenUserProvider = indexProvider;
-                }
-            }
-
+            findNearestProvider();
+            changeMarkerNearestProvider();
         });
 
         google.maps.event.addListener(map, 'click', function (event) {
@@ -104,7 +108,8 @@ $(document).ready(function () {
                     }
                 }
             });
-
+            findNearestProvider();
+            changeMarkerNearestProvider();
         });
 
         $("#address").autocomplete({

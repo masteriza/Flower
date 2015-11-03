@@ -48,6 +48,11 @@
         <!-- .left-sidebar -->
         <aside class="right-sidebar">
             <strong>Services, available at specified location:</strong>
+            <select required size = "1" name = "name[]">
+                <option disabled selected>Choose provider</option>
+                <option value = "Да">Да</option>
+                <option value = "Нет">Нет</option>
+            </select>
         </aside>
         <!-- .right-sidebar -->
     </div>
