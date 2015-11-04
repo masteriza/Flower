@@ -62,7 +62,7 @@
 
         <table border="1">
             <%
-               for (Service e : DAO.getService()) {
+               for (Service e : DAO.getAllServices()) {
             %>
             <tr>
                 <td><%=e.getId()%>

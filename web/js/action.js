@@ -41,7 +41,7 @@ function initialize() {   //Определение карты
 function getMarkersData() {
     $.ajax({
         type: "POST",
-        url: "GetProviderLocation",
+        url: "GetAllServices",
         success: function (responseData) {
             arrayProviderLocation = new Array(
                 {
