@@ -1,7 +1,6 @@
 function findNearestProvider() {
     var userLocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
     var minDistanceBetweenUserProvider = 20000000;
-
     for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
         var providerLocation = arrayProviderMarkers[indexProviderMarker].getPosition();
         var distanceBetweenUserProvider = google.maps.geometry.spherical.computeDistanceBetween(userLocation, providerLocation);
@@ -11,6 +10,7 @@ function findNearestProvider() {
         }
     }
 }
+
 function changeMarkerNearestProvider() {
     for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
         if (indexProviderMarker == indexMinDistanceBetweenUserProvider) {
@@ -20,8 +20,15 @@ function changeMarkerNearestProvider() {
         }
     }
 }
-function initialize() {   //Определение карты
 
+function fillProviderSelect() {
+    $("#providerselect").empty();
+    for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
+        $('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
+    }
+}
+
+function initialize() {   //Определение карты
     var latlng = new google.maps.LatLng(50.4501, 30.5234);
     var options = {
         zoom: 11,
@@ -41,17 +48,14 @@ function initialize() {   //Определение карты
 function getMarkersData() {
     $.ajax({
         type: "POST",
-        url: "GetAllServices",
+        url: "GetAllProviders",
         success: function (responseData) {
             arrayProviderLocation = new Array(
                 {
                     "id": "",
                     "providerName": "",
                     "latitude": "",
-                    "longitude": "",
-                    "price": "",
-                    "serviceName": "",
-                    "speed": ""
+                    "longitude": ""
                 }
             );
             for (i = 0; i <= responseData.length - 1; i++) {
@@ -60,9 +64,6 @@ function getMarkersData() {
                     "providerName": responseData[i].providerName,
                     "latitude": responseData[i].latitude,
                     "longitude": responseData[i].longitude,
-                    "price": responseData[i].price,
-                    "serviceName": responseData[i].serviceName,
-                    "speed": responseData[i].speed
                 };
                 //console.log(responseData[i].providerName);
             }
@@ -77,6 +78,7 @@ function getMarkersData() {
                 });
                 arrayProviderMarkers.push(providerMarker);
             }
+            fillProviderSelect();
         }
     });
 }
@@ -97,6 +99,7 @@ $(document).ready(function () {
             });
             findNearestProvider();
             changeMarkerNearestProvider();
+            //fillProviderSelect();
         });
 
         google.maps.event.addListener(map, 'click', function (event) {
@@ -110,48 +113,10 @@ $(document).ready(function () {
             });
             findNearestProvider();
             changeMarkerNearestProvider();
-            //----------------------------------------------
-            $.ajax({
-                type: "POST",
-                url: "GetAllServices",
-                success: function (responseData) {
-                    arrayProvider = new Array(
-                        {
-                            "id": "",
-                            "providerName": "",
-                            "price": "",
-                            "serviceName": "",
-                            "speed": ""
-                        }
-                    );
-                    for (i = 0; i <= responseData.length - 1; i++) {
-                        arrayProvider[i] = {
-                            "id": responseData[i].id,
-                            "providerName": responseData[i].providerName,
-                            "price": responseData[i].price,
-                            "serviceName": responseData[i].serviceName,
-                            "speed": responseData[i].speed
-                        };
-                    }
-                    $("#providerselect").empty();
-
-                    for (indexProvider = 0; indexProvider < arrayProvider.length; indexProvider++) {
-                        $('#providerselect').append('<option  value="' + arrayProvider[indexProvider].id + '">' + arrayProvider[indexProvider].providerName + '</option>');
-                    }
-
-
-                    //$('.providerselect').html('<select size="5"><option  value="'+ +'">Sony Ericsson</option><option value="">Nokia</option><option value="">Samsung</option><option value="">LG</option></select>')
-
-
-                }
-            });
-
-
-            //$(".providerselect").load("GetAllServices", {str:arrayid,flat:cnt,act:act,delnum:delnum}, function(){
-            //});
-
-            //-----------------------------------------------
+            //fillProviderSelect();
         });
+
+
 
         $("#address").autocomplete({
             //Определяем значение для адреса при геокодировании
