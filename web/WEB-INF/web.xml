@@ -14,5 +14,13 @@
         <url-pattern>/GetAllServices</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetAllProviders</servlet-name>
+        <servlet-class>com.flower.controllers.GetAllProviders</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllProviders</servlet-name>
+        <url-pattern>/GetAllProviders</url-pattern>
+    </servlet-mapping>
 
 </web-app>

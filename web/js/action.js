@@ -110,6 +110,47 @@ $(document).ready(function () {
             });
             findNearestProvider();
             changeMarkerNearestProvider();
+            //----------------------------------------------
+            $.ajax({
+                type: "POST",
+                url: "GetAllServices",
+                success: function (responseData) {
+                    arrayProvider = new Array(
+                        {
+                            "id": "",
+                            "providerName": "",
+                            "price": "",
+                            "serviceName": "",
+                            "speed": ""
+                        }
+                    );
+                    for (i = 0; i <= responseData.length - 1; i++) {
+                        arrayProvider[i] = {
+                            "id": responseData[i].id,
+                            "providerName": responseData[i].providerName,
+                            "price": responseData[i].price,
+                            "serviceName": responseData[i].serviceName,
+                            "speed": responseData[i].speed
+                        };
+                    }
+                    $("#providerselect").empty();
+
+                    for (indexProvider = 0; indexProvider < arrayProvider.length; indexProvider++) {
+                        $('#providerselect').append('<option  value="' + arrayProvider[indexProvider].id + '">' + arrayProvider[indexProvider].providerName + '</option>');
+                    }
+
+
+                    //$('.providerselect').html('<select size="5"><option  value="'+ +'">Sony Ericsson</option><option value="">Nokia</option><option value="">Samsung</option><option value="">LG</option></select>')
+
+
+                }
+            });
+
+
+            //$(".providerselect").load("GetAllServices", {str:arrayid,flat:cnt,act:act,delnum:delnum}, function(){
+            //});
+
+            //-----------------------------------------------
         });
 
         $("#address").autocomplete({
