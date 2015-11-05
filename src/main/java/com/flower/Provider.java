@@ -5,7 +5,7 @@ package com.flower;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Provider {
-    @JsonProperty("ID")
+    @JsonProperty("id")
     private int id;
 
     @JsonProperty("providerName")
@@ -21,10 +21,11 @@ public class Provider {
 
     }
 
-    public Provider(int id, String providerName, Double longitude, Double latitude, int price, String serviceName, Double servicePrice, String speed) {
+    public Provider(int id, String providerName, Double longitude, Double latitude) {
         this.id = id;
         this.providerName = providerName;
         this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public int getId() {

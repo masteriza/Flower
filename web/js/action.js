@@ -7,6 +7,7 @@ function findNearestProvider() {
         if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
             minDistanceBetweenUserProvider = distanceBetweenUserProvider;
             indexMinDistanceBetweenUserProvider = indexProviderMarker;
+            idNearestProvider = arrayProviderMarkers[indexProviderMarker].id;
         }
     }
 }
@@ -23,9 +24,15 @@ function changeMarkerNearestProvider() {
 
 function fillProviderSelect() {
     $("#providerselect").empty();
-    for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
-        $('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
-    }
+    /*for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
+        if (arrayProviderLocation[indexProvider].id == idNearestProvider) {
+            $('#providerselect').append('<option selected value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
+        } else {
+            $('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
+        }
+        //selected
+        //$('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
+    }*/
 }
 
 function initialize() {   //Определение карты
@@ -88,63 +95,59 @@ $(document).ready(function () {
     initialize();
     getMarkersData();
 
-    $(function () {
-        google.maps.event.addListener(usermarker, 'dragend', function () {
-            geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        $('#address').val(results[0].formatted_address);
-                    }
+
+    google.maps.event.addListener(usermarker, 'dragend', function () {
+        geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#address').val(results[0].formatted_address);
                 }
-            });
-            findNearestProvider();
-            changeMarkerNearestProvider();
-            //fillProviderSelect();
-        });
-
-        google.maps.event.addListener(map, 'click', function (event) {
-            usermarker.setPosition(event.latLng);
-            geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        $('#address').val(results[0].formatted_address);
-                    }
-                }
-            });
-            findNearestProvider();
-            changeMarkerNearestProvider();
-            //fillProviderSelect();
-        });
-
-
-
-        $("#address").autocomplete({
-            //Определяем значение для адреса при геокодировании
-            source: function (request, response) {
-                geocoder.geocode({'address': request.term}, function (results, status) {
-                    response($.map(results, function (item) {
-                        return {
-                            label: item.formatted_address,
-                            value: item.formatted_address,
-                            latitude: item.geometry.location.lat(),
-                            longitude: item.geometry.location.lng()
-                        }
-                    }));
-                })
-            },
-            //Выполняется при выборе конкретного адреса
-            select: function (event, ui) {
-                //$("#latitude").val(ui.item.latitude);
-                //$("#longitude").val(ui.item.longitude);
-                var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-                usermarker.setPosition(location);
-                map.setCenter(location);
             }
         });
-
-
-        //End FuncReady
+        findNearestProvider();
+        changeMarkerNearestProvider();
+        //fillProviderSelect();
     });
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        usermarker.setPosition(event.latLng);
+        geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#address').val(results[0].formatted_address);
+                }
+            }
+        });
+        findNearestProvider();
+        changeMarkerNearestProvider();
+        //fillProviderSelect();
+    });
+
+
+    $("#address").autocomplete({
+        //Определяем значение для адреса при геокодировании
+        source: function (request, response) {
+            geocoder.geocode({'address': request.term}, function (results, status) {
+                response($.map(results, function (item) {
+                    return {
+                        label: item.formatted_address,
+                        value: item.formatted_address,
+                        latitude: item.geometry.location.lat(),
+                        longitude: item.geometry.location.lng()
+                    }
+                }));
+            })
+        },
+        //Выполняется при выборе конкретного адреса
+        select: function (event, ui) {
+            //$("#latitude").val(ui.item.latitude);
+            //$("#longitude").val(ui.item.longitude);
+            var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
+            usermarker.setPosition(location);
+            map.setCenter(location);
+        }
+    });
+
 
     //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
 
