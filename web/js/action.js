@@ -7,7 +7,8 @@ function findNearestProvider() {
         if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
             minDistanceBetweenUserProvider = distanceBetweenUserProvider;
             indexMinDistanceBetweenUserProvider = indexProviderMarker;
-            idNearestProvider = arrayProviderMarkers[indexProviderMarker].id;
+            idNearestProvider = arrayProviderLocation[indexProviderMarker].id;
+
         }
     }
 }
@@ -24,7 +25,7 @@ function changeMarkerNearestProvider() {
 
 function fillProviderSelect() {
     $("#providerselect").empty();
-    /*for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
+    for (indexProvider = 0; indexProvider < arrayProviderLocation.length; indexProvider++) {
         if (arrayProviderLocation[indexProvider].id == idNearestProvider) {
             $('#providerselect').append('<option selected value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
         } else {
@@ -32,7 +33,7 @@ function fillProviderSelect() {
         }
         //selected
         //$('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
-    }*/
+    }
 }
 
 function initialize() {   //Определение карты
@@ -70,7 +71,7 @@ function getMarkersData() {
                     "id": responseData[i].id,
                     "providerName": responseData[i].providerName,
                     "latitude": responseData[i].latitude,
-                    "longitude": responseData[i].longitude,
+                    "longitude": responseData[i].longitude
                 };
                 //console.log(responseData[i].providerName);
             }
@@ -91,7 +92,7 @@ function getMarkersData() {
 }
 
 $(document).ready(function () {
-
+    idNearestProvider = 0;
     initialize();
     getMarkersData();
 
@@ -106,7 +107,7 @@ $(document).ready(function () {
         });
         findNearestProvider();
         changeMarkerNearestProvider();
-        //fillProviderSelect();
+        fillProviderSelect();
     });
 
     google.maps.event.addListener(map, 'click', function (event) {
@@ -120,7 +121,7 @@ $(document).ready(function () {
         });
         findNearestProvider();
         changeMarkerNearestProvider();
-        //fillProviderSelect();
+        fillProviderSelect();
     });
 
 
@@ -146,10 +147,15 @@ $(document).ready(function () {
             usermarker.setPosition(location);
             map.setCenter(location);
         }
+    }); //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
+
+    $('#providerselect').change(function(){
+        $(this).attr('selected','selected');
+
+        idNearestProvider = $("#providerselect option:selected").val();
+        //console.log(idProvider);
     });
 
-
-    //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
 
 
 });
