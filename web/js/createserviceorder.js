@@ -1,24 +1,23 @@
 function findNearestProvider() {
     var userLocation = new google.maps.LatLng(usermarker.getPosition().lat(), usermarker.getPosition().lng());
     var minDistanceBetweenUserProvider = 20000000;
-    for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
-        var providerLocation = arrayProviderMarkers[indexProviderMarker].getPosition();
+    for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderLocation.length; indexProviderMarker++) {
+        var providerLocation = arrayProviderLocation[indexProviderMarker].providerMarkers.getPosition();
         var distanceBetweenUserProvider = google.maps.geometry.spherical.computeDistanceBetween(userLocation, providerLocation);
         if (minDistanceBetweenUserProvider >= distanceBetweenUserProvider) {
             minDistanceBetweenUserProvider = distanceBetweenUserProvider;
-            indexMinDistanceBetweenUserProvider = indexProviderMarker;
+            //indexMinDistanceBetweenUserProvider = indexProviderMarker;
             idNearestProvider = arrayProviderLocation[indexProviderMarker].id;
-
         }
     }
 }
 
 function changeMarkerNearestProvider() {
-    for (var indexProviderMarker = 0; indexProviderMarker < arrayProviderMarkers.length; indexProviderMarker++) {
-        if (indexProviderMarker == indexMinDistanceBetweenUserProvider) {
-            arrayProviderMarkers[indexProviderMarker].setIcon('img/marker_green.png');
+    for (var indexProviderLocation = 0; indexProviderLocation < arrayProviderLocation.length; indexProviderLocation++) {
+        if (idNearestProvider == arrayProviderLocation[indexProviderLocation].id) {
+            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('img/marker_green.png');
         } else {
-            arrayProviderMarkers[indexProviderMarker].setIcon('img/marker_blue.png');
+            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('img/marker_blue.png');
         }
     }
 }
@@ -31,9 +30,25 @@ function fillProviderSelect() {
         } else {
             $('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
         }
-        //selected
-        //$('#providerselect').append('<option  value="' + arrayProviderLocation[indexProvider].id + '">' + arrayProviderLocation[indexProvider].providerName + '</option>');
     }
+}
+
+function getProviderServices() {
+    idNearestProvider = $("#providerselect option:selected").val();
+    changeMarkerNearestProvider();
+    $.ajax({
+        type: "POST",
+        url: "GetServiceByProviderId",
+        data: {idProvider: idNearestProvider},
+        success: function (responseData) {
+
+            $("#providerservices").empty();
+            for (i = 0; i <= responseData.length - 1; i++) {
+                ////console.log(responseData[i].providerName);
+                $('#providerservices').append('<input type="radio" value="' + responseData[i].id + '">' + responseData[i].serviceName + ' ' + responseData[i].speed + ' - ' + responseData[i].price + '<br>');
+            }
+        }
+    });
 }
 
 function initialize() {   //Определение карты
@@ -45,7 +60,7 @@ function initialize() {   //Определение карты
     };
 
     map = new google.maps.Map(document.getElementById("map_canvas"), options);
-    arrayProviderMarkers = [];
+
     geocoder = new google.maps.Geocoder();//Определение геокодера
     usermarker = new google.maps.Marker({ //определение маркера
         map: map,
@@ -63,7 +78,9 @@ function getMarkersData() {
                     "id": "",
                     "providerName": "",
                     "latitude": "",
-                    "longitude": ""
+                    "longitude": "",
+                    "providerMarkers": ""
+
                 }
             );
             for (i = 0; i <= responseData.length - 1; i++) {
@@ -72,6 +89,7 @@ function getMarkersData() {
                     "providerName": responseData[i].providerName,
                     "latitude": responseData[i].latitude,
                     "longitude": responseData[i].longitude
+
                 };
                 //console.log(responseData[i].providerName);
             }
@@ -84,9 +102,25 @@ function getMarkersData() {
                     icon: 'img/marker_blue.png',
                     position: userMarkerLatLng
                 });
-                arrayProviderMarkers.push(providerMarker);
+                arrayProviderLocation[indexProvider].providerMarkers = providerMarker;
+
             }
             fillProviderSelect();
+            getProviderServices();
+        }
+    });
+}
+
+function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            usermarker.setPosition(results[0].geometry.location);
+            //map.setZoom(11);
+            usermarker.setMap(map);
+        } else {
+            alert('Your address is not found');
         }
     });
 }
@@ -95,7 +129,6 @@ $(document).ready(function () {
     idNearestProvider = 0;
     initialize();
     getMarkersData();
-
 
     google.maps.event.addListener(usermarker, 'dragend', function () {
         geocoder.geocode({'latLng': usermarker.getPosition()}, function (results, status) {
@@ -108,6 +141,7 @@ $(document).ready(function () {
         findNearestProvider();
         changeMarkerNearestProvider();
         fillProviderSelect();
+        getProviderServices();
     });
 
     google.maps.event.addListener(map, 'click', function (event) {
@@ -122,6 +156,7 @@ $(document).ready(function () {
         findNearestProvider();
         changeMarkerNearestProvider();
         fillProviderSelect();
+        getProviderServices();
     });
 
 
@@ -149,28 +184,13 @@ $(document).ready(function () {
         }
     }); //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
 
-    $('#providerselect').change(function(){
-        $(this).attr('selected','selected');
+    $('#providerselect').change(function () {
+        $(this).attr('selected', 'selected');
 
-        idNearestProvider = $("#providerselect option:selected").val();
-        //console.log(idProvider);
+        getProviderServices();
+
     });
-
 
 
 });
 
-function codeAddress() {
-    var address = document.getElementById('address').value;
-    geocoder.geocode({'address': address}, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            usermarker.setPosition(results[0].geometry.location);
-            //map.setZoom(11);
-            usermarker.setMap(map);
-        } else {
-            alert('Your address is not found');
-            //alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}

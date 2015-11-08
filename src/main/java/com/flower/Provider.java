@@ -21,6 +21,7 @@ public class Provider {
 
     }
 
+
     public Provider(int id, String providerName, Double longitude, Double latitude) {
         this.id = id;
         this.providerName = providerName;

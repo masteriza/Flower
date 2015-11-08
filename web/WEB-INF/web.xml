@@ -23,4 +23,13 @@
         <url-pattern>/GetAllProviders</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetServiceByProviderId</servlet-name>
+        <servlet-class>com.flower.controllers.GetServiceByProviderId</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetServiceByProviderId</servlet-name>
+        <url-pattern>/GetServiceByProviderId</url-pattern>
+    </servlet-mapping>
+
 </web-app>
