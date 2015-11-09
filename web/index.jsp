@@ -19,8 +19,21 @@
 <div class="wrapper">
 
     <header class="header">
-        <div id="headformicon"></div>
-        <div id="headformtext">Flower - advance internet provider</div>
+        <div id="logo">
+            <a href="index.jsp"><img src="img/flower_logo.png"></a>
+        </div>
+        <div id="logotext">Flower - advance internet provider</div>
+        <div id="menu">
+            <ul>
+                <li>
+                    <a href="#register">Register</a>
+                </li>
+                <li>
+                    <a href="#login">Log In</a>
+                </li>
+            </ul>
+        </div>
+
     </header>
     <!-- .header-->
 
@@ -29,6 +42,10 @@
         <div class="container">
             <main class="content">
                 <strong>Content:</strong>
+
+
+
+
             </main>
             <!-- .content -->
         </div>
