@@ -56,7 +56,7 @@ article, aside, details, figcaption, figure, footer, header, main, nav, section,
 }
 
 body {
-
+    height: 100%
     font: 12px/18px Arial, sans-serif;
     width: 100%;
     background: none repeat scroll 0 0 #edf1f5;
@@ -65,6 +65,7 @@ body {
 .wrapper {
     width: 1000px;
     margin: 0 auto;
+
 }
 
 /* Header
@@ -72,7 +73,6 @@ body {
 .header {
     height: 64px;
     background: none repeat scroll 0 0 #edf1f5;
-
 }
 
 #logo {
@@ -99,11 +99,15 @@ body {
 
     background: none repeat scroll 0 0 #edf1f5;
     cursor: pointer;
-    float: right;
+    padding: 0 0 0 170px;
+    /*float: right;*/
     height: 64px;
     line-height: 64px;
     text-align: center;
     text-transform: uppercase;
+
+    display: table-cell;
+    vertical-align: middle;
 
 }
 
@@ -126,13 +130,14 @@ body {
     padding: 0 18px;
     text-decoration: none;
     text-transform: uppercase;
-    vertical-align: middle;
+
 }
 
 #menu li a {
     padding: 5px 10px;
     color: #fff;
     text-decoration: none;
+
 }
 
 #menu li:hover {
@@ -144,7 +149,8 @@ body {
 .middle {
     width: 100%;
     position: relative;
-    background: #FFACAA;
+    /*background: #FFACAA;*/
+    background: none repeat scroll 0 0 #edf1f5;
 }
 
 .middle:after {
@@ -163,24 +169,12 @@ body {
     padding: 0 270px 0 270px;
 }
 
-/* Left Sidebar
------------------------------------------------------------------------------*/
-.left-sidebar {
+#centerlogo {
+    cursor: pointer;
     float: left;
-    width: 250px;
-    margin-left: -100%;
-    position: relative;
-    background: #B5E3FF;
-}
-
-/* Right Sidebar
------------------------------------------------------------------------------*/
-.right-sidebar {
-    float: left;
-    width: 0px;
-    margin-left: 0px;
-    position: relative;
-    background: #FFACAA;
+    background: none repeat scroll 0 0 #edf1f5;
+    height: 500px;
+    width: 500px;
 }
 
 /* Footer
@@ -188,4 +182,9 @@ body {
 .footer {
     height: 50px;
     background: #BFF08E;
+    /*background: none repeat scroll 0 0 #edf1f5;*/
+
+
+
+
 }

@@ -41,31 +41,25 @@
 
         <div class="container">
             <main class="content">
-                <strong>Content:</strong>
 
-
-
-
+                <div id="centerlogo">
+                    <a href="index.jsp"><img src="img/centerlogo.png"></a>
+                </div>
             </main>
             <!-- .content -->
         </div>
         <!-- .container-->
 
-        <aside class="left-sidebar">
-            <strong>Left Sidebar:</strong>
-        </aside>
         <!-- .left-sidebar -->
 
-        <aside class="right-sidebar">
 
-        </aside>
         <!-- .right-sidebar -->
 
     </div>
     <!-- .middle-->
 
     <footer class="footer">
-        <strong>Footer:</strong>
+
     </footer>
     <!-- .footer -->
 
