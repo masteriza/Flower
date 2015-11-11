@@ -1,21 +1,22 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" import="com.flower.dao.*" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
     <title></title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
-
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
     <script src="js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
+
 <body>
+
 <div class="wrapper">
 
     <header class="header">
@@ -25,45 +26,62 @@
         <div id="logotext">Flower - advance internet provider</div>
         <div id="menu">
             <ul>
-                <li>
+                <li id="register">
                     <a href="#register">Register</a>
                 </li>
-                <li>
+                <li id="login">
                     <a href="#login">Log In</a>
                 </li>
             </ul>
         </div>
 
+        <div class="login-form" style="display: none;">
+            <h3>Enter the site</h3>
+
+            <form id="user-form" method="post" action="/user/login">
+                <p>
+                    <label class="required" for="UserLogin_username">
+                        Email
+                        <span class="required">*</span>
+                    </label>
+                    <input id="UserLogin_username" class="logintext" type="text" name="UserLogin[username]">
+                </p>
+
+                <p>
+                    <label class="required" for="UserLogin_password">
+                        Password
+                        <span class="required">*</span>
+                    </label>
+                    <input id="UserLogin_password" class="logintext" type="password" name="UserLogin[password]">
+                </p>
+
+                <div class="order-button">
+                    <input type="submit" value="OK" name="yt1">
+                </div>
+                <div class="link">
+                    <a class="lost" href="/user/recovery">Forgot your password?</a>
+                    <a class="reg" href="/user/registration">reg</a>
+                </div>
+            </form>
+        </div>
     </header>
     <!-- .header-->
 
-    <div class="middle">
-
-        <div class="container">
-            <main class="content">
-
-                <div id="centerlogo">
-                    <a href="index.jsp"><img src="img/centerlogo.png"></a>
-                </div>
-            </main>
-            <!-- .content -->
+    <main class="content">
+        <div id="centerlogo">
+            <img src="img/centerlogo.png">
         </div>
-        <!-- .container-->
-
-        <!-- .left-sidebar -->
-
-
-        <!-- .right-sidebar -->
-
-    </div>
-    <!-- .middle-->
-
-    <footer class="footer">
-
-    </footer>
-    <!-- .footer -->
+    </main>
+    <!-- .content -->
 
 </div>
 <!-- .wrapper -->
+
+<footer class="footer">
+    Design and Development by Viacheslav Chernyshov
+</footer>
+<!-- .footer -->
+
+<div id="overlay" class="overlay" style="display:none;"></div>
 </body>
 </html>

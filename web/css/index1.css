@@ -9,7 +9,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -22,7 +22,7 @@ time, mark, audio, video {
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+footer, header, menu, nav, section {
     display: block;
 }
 
@@ -51,27 +51,21 @@ table {
 
 /* End of Eric Meyer's CSS Reset */
 
-html {
-    height: 100%;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
     display: block;
 }
 
 body {
+    height: 100%
     font: 12px/18px Arial, sans-serif;
     width: 100%;
-    height: 100%;
     background: none repeat scroll 0 0 #edf1f5;
 }
 
 .wrapper {
     width: 1000px;
     margin: 0 auto;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
+
 }
 
 /* Header
@@ -102,7 +96,7 @@ body {
 }
 
 #menu {
-    color: #fff;
+
     background: none repeat scroll 0 0 #edf1f5;
     cursor: pointer;
     padding: 0 0 0 170px;
@@ -110,6 +104,8 @@ body {
     height: 64px;
     line-height: 64px;
     text-align: center;
+    text-transform: uppercase;
+
     display: table-cell;
     vertical-align: middle;
 
@@ -134,6 +130,7 @@ body {
     padding: 0 18px;
     text-decoration: none;
     text-transform: uppercase;
+
 }
 
 #menu li a {
@@ -147,96 +144,13 @@ body {
     background: none repeat scroll 0 0 #27a1ce;
 }
 
-.login-form {
-    background: #fff none repeat scroll 0 0;
-    display: none;
-    height: 250px;
-    /*position: absolute;
-    right: 2px;*/
-
-    position: relative;
-    margin: 0 0 0 570px;
-
-    text-align: left;
-    /*top: 0px;*/
-    width: 292px;
-    z-index: 10000;
-}
-
-.login-form form {
-    margin: 0 !important;
-}
-
-.login-form h3 {
-    border-bottom: 2px solid #edf1f5;
-    color: #008abd;
-    font-size: 24px;
-    line-height: 24px;
-    margin-bottom: 20px;
-    padding: 12px 20px 20px;
-    text-align: left;
-}
-
-.login-form p {
-    font-family: "wf_SegoeUILight";
-    margin-bottom: 10px;
-    margin-left: 20px;
-}
-
-.login-form p label {
-    display: inline-block;
-    vertical-align: middle;
-    width: 62px;
-}
-
-.login-form p input[type="text"] {
-    vertical-align: middle;
-    width: 166px;
-}
-
-.login-form input[type="submit"] {
-    background: #4e77a9 none repeat scroll 0 0;
-    border: medium none;
-    color: #fff;
-    font-family: "wf_SegoeUILight";
-    font-size: 18px;
-    height: 65px;
-    width: 100%;
-}
-
-.logintext{
-    width: 166px;
-}
-
-.login-form input[type="submit"]:hover {
-    background: #27a1ce none repeat scroll 0 0;
-}
-
-.login-form .link {
-    padding: 6px 0 10px;
-}
-
-.login-form .link a {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    color: #008abd;
-    display: inline !important;
-    padding: 0;
-    text-decoration: underline;
-}
-
-.login-form .link a:hover {
-    text-decoration: none;
-}
-
-.login-form .link a:first-child {
-    margin-left: 25px;
-    margin-right: 70px;
-}
-
 /* Middle
 -----------------------------------------------------------------------------*/
-.content {
-    padding: 0 0 100px;
+.middle {
+    width: 100%;
+    position: relative;
+    /*background: #FFACAA;*/
+    background: none repeat scroll 0 0 #edf1f5;
 }
 
 .middle:after {
@@ -252,7 +166,7 @@ body {
 }
 
 .content {
-    padding: 100px 270px 0 270px;
+    padding: 0 270px 0 270px;
 }
 
 #centerlogo {
@@ -266,20 +180,11 @@ body {
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-    width: 1000px;
-    margin: -32px auto 0;
-    height: 32px;
-    /*background: #BFF08E;*/
-    position: relative;
-    background: none repeat scroll 0 0 #edf1f5;
-}
+    height: 50px;
+    background: #BFF08E;
+    /*background: none repeat scroll 0 0 #edf1f5;*/
 
-.overlay {
-    background: transparent url("../img/overlay.png") repeat scroll left top;
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1000;
+
+
+
 }
