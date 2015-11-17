@@ -11,8 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/recovery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/recovery.css"/>
 </head>
 
 <body>
@@ -67,9 +67,28 @@
     <!-- .header-->
 
     <main class="content">
-        <div id="centerlogo">
-            <img src="img/centerlogo.png">
+
+        <div class="registration">
+            <div class="reg-form">
+                <form method="post" action="/user/recovery">
+                    <p>
+                        <label for="UserRecoveryForm_login_or_email">Email</label>
+                        <input id="UserRecoveryForm_login_or_email" type="text" name="UserRecoveryForm[login_or_email]">
+                    </p>
+
+                    <p class="hint">Please, enter your email address.</p>
+
+                    <p></p>
+
+                    <div class="row-button">
+                        <input type="submit" value="Recovery" name="yt0">
+                    </div>
+                    <br>
+                </form>
+            </div>
         </div>
+
+
     </main>
     <!-- .content -->
 

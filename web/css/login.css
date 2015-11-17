@@ -243,12 +243,94 @@ body {
     padding: 100px 270px 0 270px;
 }
 
-#centerlogo {
-    cursor: pointer;
-    float: left;
-    background: none repeat scroll 0 0 #edf1f5;
-    height: 500px;
-    width: 500px;
+.reg-form {
+    margin-left: 25px;
+}
+
+.reg-form p {
+    margin: 0 0 14px !important;
+    padding: 0 !important;
+}
+
+.reg-form h3 {
+    color: #008abd;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.reg-form label {
+    display: inline-block;
+    margin: 0 !important;
+    width: 250px;
+}
+
+.reg-form input[type="text"] {
+    margin: 0 !important;
+    width: 170px !important;
+}
+
+.reg-form .row-button {
+    left: -25px;
+    position: relative;
+}
+
+.reg-form .row-button input[type="submit"] {
+    background: #008abd none repeat scroll 0 0;
+    border: medium none;
+    color: #ffffff;
+    font-family: "wf_SegoeUI";
+    font-size: 14px;
+    height: 32px;
+    left: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 162px;
+}
+
+.reg-form .row-button input[type="submit"]:hover {
+    background: #4e77a9 none repeat scroll 0 0;
+}
+
+.reg-form {
+    height: 85px;
+    margin-bottom: 20px;
+    width: 435px;
+}
+
+.reg-form textarea {
+    font-family: "wf_SegoeUI";
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+input[type="password"] {
+    background: whitesmoke url("img/input.gif") repeat-x scroll 0 0;
+    border-left: 1px solid #d3d1cf;
+    border-top: 1px solid #d3d1cf;
+    color: #999;
+    font-family: "wf_SegoeUI";
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+input[type="text"] {
+    background: whitesmoke url("img/input.gif") repeat-x scroll 0 0;
+    border-left: 1px solid #d3d1cf;
+    border-top: 1px solid #d3d1cf;
+    color: #999;
+    font-family: "wf_SegoeUI";
+    font-size: 14px;
+}
+
+.reg-form input[type="text"] {
+    margin: 0 !important;
+    width: 170px !important;
+}
+
+.reg-form input[type="password"] {
+    margin: 0 !important;
+    width: 170px !important;
 }
 
 /* Footer

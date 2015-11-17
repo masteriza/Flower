@@ -11,8 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
 </head>
 
 <body>
@@ -44,15 +44,15 @@
                         Email
                         <span class="required">*</span>
                     </label>
-                    <input id="UserLogin_username" class="logintext" type="text" name="UserLogin[username]">
+                    <input id="email" class="logintext" type="text" name="email">
                 </p>
 
                 <p>
-                    <label class="required" for="UserLogin_password">
+                    <label class="required">
                         Password
                         <span class="required">*</span>
                     </label>
-                    <input id="UserLogin_password" class="logintext" type="password" name="UserLogin[password]">
+                    <input id="password" class="logintext" type="password" name="password">
                 </p>
 
                 <div class="order-button">
@@ -67,9 +67,48 @@
     <!-- .header-->
 
     <main class="content">
-        <div id="centerlogo">
-            <img src="img/centerlogo.png">
+
+        <div class="reg-form">
+            <h1 class="title">Вход</h1>
+
+            <form id="registration-form" method="post" action="/user/login" enctype="multipart/form-data">
+                <div class="errorSummary">
+
+                    <ul>
+                        <li>Incorrect login or password.</li>
+                    </ul>
+                </div>
+                <p>
+                    <label class="error required" for="UserLogin_username">
+                        email
+                        <span class="required">*</span>
+                    </label>
+                    <input id="UserLogin_username" class="error" type="text" value=""
+                           name="UserLogin[username]">
+                </p>
+
+                <p>
+                    <label class="required" for="UserLogin_password">
+                        Пароль
+                        <span class="required">*</span>
+                    </label>
+                    <input id="UserLogin_password" type="password" value="" name="UserLogin[password]">
+                </p>
+
+                <p style="padding-top: 15px !important;">
+                    <a href="recovery.jsp">Forgot your password?</a>
+                </p>
+                <br>
+
+                <div class="row-button">
+                    <input type="submit" value="Вход" name="yt0">
+                    <a class="reg" href="registration.jsp">Sign up</a>
+                </div>
+            </form>
+            <br>
         </div>
+
+
     </main>
     <!-- .content -->
 

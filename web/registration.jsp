@@ -11,8 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/registration.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/registration.css"/>
 </head>
 
 <body>
@@ -67,8 +67,45 @@
     <!-- .header-->
 
     <main class="content">
-        <div id="centerlogo">
-            <img src="img/centerlogo.png">
+        <div class="registration">
+            <form method="post" action="/user/registration" id="registration-form" enctype="multipart/form-data">
+                <div class="reg-form clearfix">
+                    <h3><span class="required"></span>Create User Account</h3>
+
+                    <p><label class="required">E-mail <span
+                            class="required">*</span></label><input type="text" value="" id="email"
+                                                                    name="email"></p>
+
+                    <p><label class="required">Password <span
+                            class="required">*</span></label><input type="password" value="" maxlength="128"
+                                                                    id="password"
+                                                                    name="password"></p>
+
+                    <p><label class="required">Confirm password<span
+                            class="required">*</span></label><input type="password" id="verifyPassword"
+                                                                    name="verifyPassword"></p>
+
+
+                    <p><label class="required">First name <span
+                            class="required">*</span></label><input type="text" id="firstName"
+                                                                    name="first_name" maxlength="255"
+                                                                    size="60"></p>
+
+                    <p><label class="required">Last name <span
+                            class="required">*</span></label><input type="text" id="lastName"
+                                                                    name="lastName" maxlength="255" size="60">
+                    </p>
+
+                    <p><label class="required"> Phone <span
+                            class="required"></span></label><input type="text" value="" id="phone"
+                                                                   name="phone" maxlength="255" size="60"></p>
+
+                    <div class="row-button">
+                        <input type="submit" value="Sign Up" name="signUp"></div>
+
+                    <br>
+                </div>
+            </form>
         </div>
     </main>
     <!-- .content -->
