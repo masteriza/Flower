@@ -56,7 +56,7 @@
                 </p>
 
                 <div class="order-button">
-                    <input type="submit" value="OK" name="yt1">
+                    <input type="button" value="OK" name="yt1">
                 </div>
                 <div class="link">
                     <a class="lost" href="recovery.jsp">Forgot your password?</a>
@@ -69,7 +69,7 @@
     <main class="content">
 
         <div class="reg-form">
-            <h1 class="title">Вход</h1>
+            <h1 class="title">Enter the site</h1>
 
             <form id="registration-form" method="post" action="/user/login" enctype="multipart/form-data">
                 <div class="errorSummary">
@@ -80,7 +80,7 @@
                 </div>
                 <p>
                     <label class="error required" for="UserLogin_username">
-                        email
+                        Email
                         <span class="required">*</span>
                     </label>
                     <input id="UserLogin_username" class="error" type="text" value=""
@@ -89,7 +89,7 @@
 
                 <p>
                     <label class="required" for="UserLogin_password">
-                        Пароль
+                        Password
                         <span class="required">*</span>
                     </label>
                     <input id="UserLogin_password" type="password" value="" name="UserLogin[password]">
@@ -101,8 +101,7 @@
                 <br>
 
                 <div class="row-button">
-                    <input type="submit" value="Вход" name="yt0">
-                    <a class="reg" href="registration.jsp">Sign up</a>
+                    <input type="button" value="OK" name="yt0">
                 </div>
             </form>
             <br>

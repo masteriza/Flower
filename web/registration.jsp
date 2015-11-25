@@ -56,7 +56,7 @@
                 </p>
 
                 <div class="order-button">
-                    <input type="submit" value="OK" name="yt1">
+                    <input type="button" value="OK" name="yt1">
                 </div>
                 <div class="link">
                     <a class="lost" href="recovery.jsp">Forgot your password?</a>
@@ -68,16 +68,30 @@
 
     <main class="content">
         <div class="registration">
-            <form method="post" action="/user/registration" id="registration-form" enctype="multipart/form-data">
-                <div class="reg-form clearfix">
+            <div id="registration-form">
+                <div class="reg-form">
                     <h3><span class="required"></span>Create User Account</h3>
+
+                    <div class="errorSummary">
+                        <!-- errormessage
+                        <p>Необходимо исправить следующие ошибки:</p>
+                        <ul>
+                            <li>Пароль слишком короткий (Минимум: 4 симв.).</li>
+                            <li>Электронная почта не является правильным E-Mail адресом.</li>
+                            <li>Необходимо заполнить поле Фамилия.</li>
+                            <li>Необходимо заполнить поле Город.</li>
+                            <li>Необходимо заполнить поле Контактный телефон.</li>
+                            <li>Необходимо заполнить поле Должность.</li>
+                            <li>Необходимо заполнить поле Организация.</li>
+                        </ul> errormessage-->
+                    </div>
 
                     <p><label class="required">E-mail <span
                             class="required">*</span></label><input type="text" value="" id="email"
                                                                     name="email"></p>
 
                     <p><label class="required">Password <span
-                            class="required">*</span></label><input type="password" value="" maxlength="128"
+                            class="required">*</span></label><input type="text" value="" maxlength="128"
                                                                     id="password"
                                                                     name="password"></p>
 
@@ -100,15 +114,16 @@
                             class="required"></span></label><input type="text" value="" id="phone"
                                                                    name="phone" maxlength="255" size="60"></p>
 
-                    <div class="row-button">
-                        <input type="submit" value="Sign Up" name="signUp"></div>
+                    <div id="btRegistration" class="row-button">
+                        <input type="button" value="Sign Up" name="signUp"></div>
 
                     <br>
                 </div>
-            </form>
+            </div>
         </div>
-    </main>
-    <!-- .content -->
+</div>
+</main>
+<!-- .content -->
 
 </div>
 <!-- .wrapper -->

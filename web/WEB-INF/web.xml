@@ -6,6 +6,23 @@
 
 
     <servlet>
+        <servlet-name>RegistrationUser</servlet-name>
+        <servlet-class>com.flower.controllers.RegistrationUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistrationUser</servlet-name>
+        <url-pattern>/RegistrationUser</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ActivationUserAccount</servlet-name>
+        <servlet-class>com.flower.controllers.ActivationUserAccount</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivationUserAccount</servlet-name>
+        <url-pattern>/ActivationUserAccount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>GetAllServices</servlet-name>
         <servlet-class>com.flower.controllers.GetAllServices</servlet-class>
     </servlet>

@@ -56,7 +56,7 @@
                 </p>
 
                 <div class="order-button">
-                    <input type="submit" value="OK" name="yt1">
+                    <input type="button" value="OK" name="yt1">
                 </div>
                 <div class="link">
                     <a class="lost" href="recovery.jsp">Forgot your password?</a>
@@ -81,7 +81,7 @@
                     <p></p>
 
                     <div class="row-button">
-                        <input type="submit" value="Recovery" name="yt0">
+                        <input type="button" value="Recovery" name="yt0">
                     </div>
                     <br>
                 </form>

@@ -194,7 +194,7 @@ body {
     width: 166px;
 }
 
-.login-form input[type="submit"] {
+.login-form input[type="button"] {
     background: #4e77a9 none repeat scroll 0 0;
     border: medium none;
     color: #fff;
@@ -208,7 +208,7 @@ body {
     width: 166px;
 }
 
-.login-form input[type="submit"]:hover {
+.login-form input[type="button"]:hover {
     background: #27a1ce none repeat scroll 0 0;
 }
 
@@ -288,7 +288,7 @@ body {
     position: relative;
 }
 
-.reg-form .row-button input[type="submit"] {
+.reg-form .row-button input[type="button"] {
     background: #008abd none repeat scroll 0 0;
     border: medium none;
     color: #ffffff;
@@ -302,7 +302,7 @@ body {
     width: 120px;
 }
 
-.reg-form .row-button input[type="submit"]:hover {
+.reg-form .row-button input[type="button"]:hover {
     background: #4e77a9 none repeat scroll 0 0;
 }
 
@@ -320,7 +320,7 @@ body {
 }
 
 input[type="password"] {
-    background: whitesmoke url("img/input.gif") repeat-x scroll 0 0;
+    background: whitesmoke url("../img/input.gif") repeat-x scroll 0 0;
     border-left: 1px solid #d3d1cf;
     border-top: 1px solid #d3d1cf;
     color: #999;
@@ -330,7 +330,7 @@ input[type="password"] {
 }
 
 input[type="text"] {
-    background: whitesmoke url("img/input.gif") repeat-x scroll 0 0;
+    background: whitesmoke url("../img/input.gif") repeat-x scroll 0 0;
     border-left: 1px solid #d3d1cf;
     border-top: 1px solid #d3d1cf;
     color: #999;

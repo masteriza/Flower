@@ -11,8 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/message.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/message.css"/>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
                 </p>
 
                 <div class="order-button">
-                    <input type="submit" value="OK" name="yt1">
+                    <input type="button" value="OK" name="yt1">
                 </div>
                 <div class="link">
                     <a class="lost" href="recovery.jsp">Forgot your password?</a>
@@ -67,6 +67,9 @@
     <!-- .header-->
 
     <main class="content">
+        <div id="message"></div>
+        <br>
+
         <div id="centerlogo">
             <img src="img/centerlogo.png">
         </div>
