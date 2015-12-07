@@ -254,7 +254,7 @@ body {
 
 .reg-form h3 {
     color: #008abd;
-    font-size: 14px;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
@@ -269,12 +269,12 @@ body {
     width: 170px !important;
 }
 
-.reg-form .row-button {
+.reg-form .btRecovery {
     left: -25px;
     position: relative;
 }
 
-.reg-form .row-button input[type="button"] {
+.reg-form .btRecovery input[type="button"] {
     background: #008abd none repeat scroll 0 0;
     border: medium none;
     color: #ffffff;

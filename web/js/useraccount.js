@@ -15,9 +15,9 @@ function findNearestProvider() {
 function changeMarkerNearestProvider() {
     for (var indexProviderLocation = 0; indexProviderLocation < arrayProviderLocation.length; indexProviderLocation++) {
         if (idNearestProvider == arrayProviderLocation[indexProviderLocation].id) {
-            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('img/marker_green.png');
+            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('../img/marker_green.png');
         } else {
-            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('img/marker_blue.png');
+            arrayProviderLocation[indexProviderLocation].providerMarkers.setIcon('../img/marker_blue.png');
         }
     }
 }
@@ -38,7 +38,7 @@ function getProviderServices() {
     changeMarkerNearestProvider();
     $.ajax({
         type: "POST",
-        url: "GetServiceByProviderId",
+        url: "../GetServiceByProviderId",
         data: {idProvider: idNearestProvider},
         success: function (responseData) {
 
@@ -71,7 +71,7 @@ function initialize() {   //Определение карты
 function getMarkersData() {
     $.ajax({
         type: "POST",
-        url: "GetAllProviders",
+        url: "../GetAllProviders",
         success: function (responseData) {
             arrayProviderLocation = new Array(
                 {

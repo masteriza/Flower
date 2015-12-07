@@ -6,6 +6,24 @@
 
 
     <servlet>
+        <servlet-name>UserAuthentication</servlet-name>
+        <servlet-class>com.flower.controllers.UserAuthentication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserAuthentication</servlet-name>
+        <url-pattern>/UserAuthentication</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RecoveryUserPassword</servlet-name>
+        <servlet-class>com.flower.controllers.RecoveryUserPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecoveryUserPassword</servlet-name>
+        <url-pattern>/RecoveryUserPassword</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>RegistrationUser</servlet-name>
         <servlet-class>com.flower.controllers.RegistrationUser</servlet-class>
     </servlet>
@@ -48,5 +66,14 @@
         <servlet-name>GetServiceByProviderId</servlet-name>
         <url-pattern>/GetServiceByProviderId</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>CheckSecurityPage</filter-name>
+        <filter-class>com.flower.filters.CheckSecurityPage</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CheckSecurityPage</filter-name>
+        <url-pattern>/sec/*</url-pattern>
+    </filter-mapping>
+
 
 </web-app>

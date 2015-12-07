@@ -4,7 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/flower/controllers/GetAllServices.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/flower/dao/DAO.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/flower/util/ClassNameUtil.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/web/js/createserviceorder.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/js/useraccount.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

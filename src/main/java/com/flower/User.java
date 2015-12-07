@@ -41,7 +41,7 @@ public class User {
         this.lastName = lastName;
         this.phone = phone;
         this.idRole = idRole;
-        this.isActive = this.isActive;
+        this.isActive = isActive;
     }
 
     public int getIdUser() {

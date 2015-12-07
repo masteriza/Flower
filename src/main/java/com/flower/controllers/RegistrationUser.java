@@ -1,5 +1,4 @@
 package com.flower.controllers;
-
 /**
  * Created by user on 18.11.2015.
  */
@@ -46,6 +45,8 @@ public class RegistrationUser extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String phone = req.getParameter("phone");
 
+        logger.info(email);
+
         EmailValidator emailValidator = new EmailValidator();
         if (emailValidator.validate(email) == false) {
             errorEmail = true;
@@ -58,7 +59,6 @@ public class RegistrationUser extends HttpServlet {
             errorAlreadyRegistered = true;
             answerMessage = "<p>You must correct the following errors:</p><ul>";
         }
-
 
         PasswordValidator passwordValidator = new PasswordValidator();
         if (passwordValidator.validate(password) == false) {
@@ -129,7 +129,6 @@ public class RegistrationUser extends HttpServlet {
             mapper.writeValue(out, answerMessage);
         } else {
 
-
             String passwordSalt = email + password;
             User newUser = new User();
 
@@ -140,46 +139,34 @@ public class RegistrationUser extends HttpServlet {
             newUser.setLastName(lastName);
             newUser.setPhone(phone);
 
-
-            //logger.info(newUser.toString());
+            logger.info(newUser.toString());
 
             DAO createNewUser = new DAO();
-
             try {
 
                 User registeredUser = createNewUser.createNewUser(newUser);
                 CalcMD5 emailMD5 = new CalcMD5();
                 EmailSender emailSender = new EmailSender("onlinemasteriza@gmail.com", "Masteriza_9910360");
 
-
                 String emailText = "You have been registered Internet provider Flower. To activate the account click on the link " +
                         "http://localhost:8888/Flower/ActivationUserAccount?id=" + registeredUser.getIdUser() + "&email=" + emailMD5.getHash(registeredUser.getEmail());
 
-
                 emailSender.send("Confirmation of registration", emailText, "flower@gmail.com", registeredUser.getEmail());
 
+                req.getSession().setAttribute("Message", "THANK YOU FOR REGISTERING! <br/>" +
+                        "Check your email and click the link to confirm your registration");
+
+                ObjectMapper mapper = new ObjectMapper();
+                resp.setContentType("application/json;charset=UTF-8");
+                PrintWriter out = resp.getWriter();
+                mapper.writeValue(out, "");
+
+                //String contextPath = req.getContextPath();
+                //resp.sendRedirect(contextPath + "/message.jsp");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
             //logger.info(passwordSalt);
-            //logger.info(passwordSaltMD5.getHash(passwordSalt));
-
         }
-
-
-
-       /*DAO user = new DAO();
-        List<Service> currentService = null;
-        currentService = service.GetServiceByProviderId(idProvider);*/
-
-
-        //logger.info(currentService);
-
-       /*ObjectMapper mapper = new ObjectMapper();
-        resp.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
-        mapper.writeValue(out, email);*/
     }
 }

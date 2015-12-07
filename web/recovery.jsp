@@ -1,3 +1,13 @@
+<%
+    String email = (String) session.getAttribute("email");
+    if (email == null) {
+        email = "";
+    }
+    String error = (String) session.getAttribute("error");
+    if (error == null) {
+        error = "";
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="js/recovery.js"></script>
+    <script src="js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="css/recovery.css"/>
 </head>
 
@@ -19,72 +29,32 @@
 
 <div class="wrapper">
 
-    <header class="header">
-        <div id="logo">
-            <a href="index.jsp"><img src="img/flower_logo.png"></a>
-        </div>
-        <div id="logotext">Flower - advance internet provider</div>
-        <div id="menu">
-            <ul>
-                <li id="register">
-                    <a href="registration.jsp">Sign up</a>
-                </li>
-                <li id="login">
-                    <a href="#login">Log In</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="login-form" style="display: none;">
-            <h3>Enter the site</h3>
-
-            <form id="user-form" method="post" action="/user/login">
-                <p>
-                    <label class="required" for="UserLogin_username">
-                        Email
-                        <span class="required">*</span>
-                    </label>
-                    <input id="UserLogin_username" class="logintext" type="text" name="UserLogin[username]">
-                </p>
-
-                <p>
-                    <label class="required" for="UserLogin_password">
-                        Password
-                        <span class="required">*</span>
-                    </label>
-                    <input id="UserLogin_password" class="logintext" type="password" name="UserLogin[password]">
-                </p>
-
-                <div class="order-button">
-                    <input type="button" value="OK" name="yt1">
-                </div>
-                <div class="link">
-                    <a class="lost" href="recovery.jsp">Forgot your password?</a>
-                </div>
-            </form>
-        </div>
-    </header>
+    <jsp:include page="header.jsp"/>
     <!-- .header-->
 
     <main class="content">
-
         <div class="registration">
             <div class="reg-form">
-                <form method="post" action="/user/recovery">
+                <h3 class="title">Enter your email</h3>
+
+                <div class="errorSummary">
+                    <%=error%>
+                </div>
+                <div>
                     <p>
-                        <label for="UserRecoveryForm_login_or_email">Email</label>
-                        <input id="UserRecoveryForm_login_or_email" type="text" name="UserRecoveryForm[login_or_email]">
+                        <label>Email</label>
+                        <input id="recovery_email" type="text">
                     </p>
 
                     <p class="hint">Please, enter your email address.</p>
 
                     <p></p>
 
-                    <div class="row-button">
-                        <input type="button" value="Recovery" name="yt0">
+                    <div class="btRecovery">
+                        <input type="button" value="Recovery">
                     </div>
                     <br>
-                </form>
+                </div>
             </div>
         </div>
 

@@ -1,6 +1,5 @@
 package com.flower.controllers;
 
-
 import com.flower.User;
 import com.flower.dao.DAO;
 import com.flower.util.CalcMD5;
@@ -34,13 +33,24 @@ public class ActivationUserAccount extends HttpServlet {
         logger.info(emailMD5);
 
         DAO activationUserAccount = new DAO();
-        User user = activationUserAccount.GetUserById(idUser);
+        User user = activationUserAccount.getUserById(idUser);
 
         CalcMD5 emailDBMD5 = new CalcMD5();
+        String contextPath = req.getContextPath();
+
         if (emailMD5.equals(emailDBMD5.getHash(user.getEmail())) == true) {
             user.setIsActive(1);
-            activationUserAccount.UpdateUserById(idUser);
+            activationUserAccount.updateUserById(idUser);
 
+            //req.getSession().setAttribute("UserID", user.getIdUser());
+            //req.getSession().setAttribute("SessionID", user.getPassword());
+            req.getSession().setAttribute("Message", "Congratulations, you successfully completed the registration. <br/>" +
+                    "Now you can log in the site");
+
+            //logger.info(contextPath);
+            resp.sendRedirect(contextPath + "/message.jsp");
+        } else {
+            resp.sendRedirect(contextPath + "/index.jsp");
         }
 
 

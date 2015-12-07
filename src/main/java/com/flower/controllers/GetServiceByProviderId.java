@@ -29,7 +29,7 @@ public class GetServiceByProviderId extends HttpServlet {
 
         DAO service = new DAO();
         List<Service> currentService = null;
-        currentService = service.GetServiceByProviderId(idProvider);
+        currentService = service.getServiceByProviderId(idProvider);
 
 
         //logger.info(currentService);

@@ -15,13 +15,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/createserviceorder.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/createserviseorder.css"/>
+    <script src="../js/useraccount.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/useraccount1.css"/>
 </head>
 
 <body>
 
 <jsp:useBean class="com.flower.dao.DAO" id="DAO" scope="application"/>
+
 
 <div class="wrapper">
     <header class="header">
