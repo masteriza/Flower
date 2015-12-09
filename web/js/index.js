@@ -103,5 +103,15 @@ $(document).ready(function () {
         });
     });
 
+    $('#btLogout').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "../UserLogout",
+            success: function () {
+                //NOOP
+            }
+        });
+    });
+
 });
 

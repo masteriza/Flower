@@ -5,11 +5,11 @@
     <div id="logotext">Flower - advance internet provider</div>
     <div id="menu">
         <ul>
-            <li id="pgRegistration">
-                <a href="#">Sign up</a>
+            <li id="btLogout">
+                <a href="#">Log Out</a>
             </li>
-            <li id="login">
-                <a href="#">Log In</a>
+            <li id="pgRegistration">
+                <a href="#">Bla bla</a>
             </li>
         </ul>
     </div>

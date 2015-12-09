@@ -1,3 +1,13 @@
+<%
+    String email = (String) session.getAttribute("email");
+    if (email == null) {
+        email = "";
+    }
+    String error = (String) session.getAttribute("error");
+    if (error == null) {
+        error = "";
+    }
+%>
 <header class="header">
     <div id="logo">
         <a href="index.jsp"><img src="img/flower_logo.png"></a>
@@ -19,7 +29,7 @@
 
         <div id="user-form">
             <p><label> Email <span>*</span> </label>
-                <input id="email" class="logintext" type="text" name="email">
+                <input id="email" class="logintext" type="text" name="email" value="<%=email%>">
             </p>
 
             <p><label> Password <span>*</span> </label>

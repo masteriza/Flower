@@ -98,6 +98,9 @@
             <select id="providerselect" size="1"></select>
 
             <div id="providerservices"></div>
+
+            <div id="btOrder">
+                <input type="button" value="Sign Up"></div>
         </aside>
         <!-- .right-sidebar -->
 

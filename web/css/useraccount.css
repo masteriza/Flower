@@ -258,10 +258,9 @@ body {
 }
 
 #userorders {
-    /*border: 1px solid black;
-    /*height: 100px;*/
+
     height: auto;
-    width: 760px;
+    width: 750px;
 }
 
 #tbuserorders {
@@ -320,7 +319,44 @@ body {
     width: 240px;
     margin-left: -240px;
     position: relative;
-    background: #FFACAA;
+    background: #e5e5ff;
+    /*background: #e5eeff;*/
+    height: 180px;
+}
+
+#providerselect {
+    margin: 10px 0 0 10px;
+    width: 220px;
+}
+
+#providerservices {
+    margin: 10px 0 0 0;
+}
+
+#btOrder {
+    top: 10px;
+    /*left: -25px;*/
+
+    position: relative;
+}
+
+#btOrder input[type="button"] {
+    background: #008abd none repeat scroll 0 0;
+    border: medium none;
+    color: #ffffff;
+    font-family: "wf_SegoeUI";
+    font-size: 14px;
+    height: 32px;
+    left: 0;
+    float: right;
+    /*margin-left: 230px;*/
+    position: relative;
+    vertical-align: middle;
+    width: 120px;
+}
+
+#btOrder input[type="button"]:hover {
+    background: #4e77a9 none repeat scroll 0 0;
 }
 
 /* Footer

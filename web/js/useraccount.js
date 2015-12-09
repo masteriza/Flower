@@ -45,7 +45,7 @@ function getProviderServices() {
             $("#providerservices").empty();
             for (i = 0; i <= responseData.length - 1; i++) {
                 ////console.log(responseData[i].providerName);
-                $('#providerservices').append('<input type="radio" value="' + responseData[i].id + '">' + responseData[i].serviceName + ' ' + responseData[i].speed + ' - ' + responseData[i].price + '<br>');
+                $('#providerservices').append('<input type="radio" name="providerservices" value="' + responseData[i].id + '">' + responseData[i].serviceName + ' ' + responseData[i].speed + ' - ' + responseData[i].price + '<br>');
             }
         }
     });
